@@ -338,3 +338,49 @@ def test_should_insert_after_tail_existing_list():
     assert ll.head.next.record == target.record
     assert ll.head.next.next.record == expected.record
     assert ll.tail.record == expected.record
+
+
+def test_should_create_gv_code_empty_list():
+    """Should create GraphViz code for an empty list."""
+    ll = LinkedList()
+
+    actual = ll.to_gv()
+    expected = 'strict digraph g {graph [ rankdir = "LR" ];}'
+
+    assert actual == expected
+
+
+def test_should_create_gv_code_one_item_list():
+    """Should create GraphViz code for a one item list."""
+    ll = LinkedList()
+    ll.append(Node(1))
+
+    actual = ll.to_gv()
+    expected = 'strict digraph g {graph [ rankdir = "LR" ];"node0" [label = "<f0> record:  1| <f1> next:"shape = "record"];}'  # noqa:  E501
+
+    assert actual == expected
+
+
+def test_should_create_gv_code_two_item_list():
+    """Should create GraphViz code for a two item list."""
+    ll = LinkedList()
+    ll.append(Node(1))
+    ll.append(Node(2))
+
+    actual = ll.to_gv()
+    expected = 'strict digraph g {graph [ rankdir = "LR" ];"node0" [label = "<f0> record:  1| <f1> next:"shape = "record"];"node0":f1 -> "node1":f0 [ id = 0 ];"node1" [label = "<f0> record:  2| <f1> next:"shape = "record"];}'  # noqa:  E501
+
+    assert actual == expected
+
+
+def test_should_create_gv_code_three_item_list():
+    """Should create GraphViz code for a three item list."""
+    ll = LinkedList()
+    ll.append(Node(1))
+    ll.append(Node(2))
+    ll.append(Node(3))
+
+    actual = ll.to_gv()
+    expected = 'strict digraph g {graph [ rankdir = "LR" ];"node0" [label = "<f0> record:  1| <f1> next:"shape = "record"];"node0":f1 -> "node1":f0 [ id = 0 ];"node1" [label = "<f0> record:  2| <f1> next:"shape = "record"];"node1":f1 -> "node2":f0 [ id = 1 ];"node2" [label = "<f0> record:  3| <f1> next:"shape = "record"];}'  # noqa:  E501
+
+    assert actual == expected

@@ -211,3 +211,27 @@ class LinkedList:
         # Non-empty list.
         node.next = self.head
         self.head = node
+
+    def to_gv(self):
+        """Create GraphViz code for the linked list."""
+        code = "strict digraph g {"
+        code += 'graph [ rankdir = "LR" ];'
+
+        cur = self.head
+        i = 0
+
+        while cur is not None:
+            code += f'"node{i}" ['
+            code += f'label = "<f0> record:  {str(cur.record)}| <f1> next:"'
+            code += 'shape = "record"'
+            code += "];"
+
+            if cur.next is not None:
+                code += f'"node{i}":f1 -> "node{i + 1}":f0 [ id = {i} ];'
+
+            cur = cur.next
+            i += 1
+
+        code += "}"
+
+        return code
