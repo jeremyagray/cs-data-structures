@@ -120,7 +120,6 @@ classifiers = [
   "Development Status :: 2 - Pre-Alpha",
   "Intended Audience :: Developers",
   "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
@@ -132,7 +131,7 @@ packages = [
 
 [tool.poetry.dependencies]
 
-python = ">=3.10.1,<4.0"
+python = ">=3.11.1,<4.0"
 
 [tool.poetry.group.dev.dependencies]
 
